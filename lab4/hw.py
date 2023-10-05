@@ -31,7 +31,6 @@ def parse_product_page(response):
     
     product_details = {}
 
-    # Find all 'p' elements and extract information based on their text content
     for p in soup.find_all('p'):
         text = p.text.strip()
         if text.startswith('ID'):
@@ -44,8 +43,8 @@ def parse_product_page(response):
             product_details['price'] = float(text.split(': ')[1])
         elif text.startswith('Description'):
             product_details['description'] = text.split(': ')[1]
-
-    product_data.append(product_details)
+    if product_details:
+        product_data.append(product_details)
 
 
 
@@ -56,7 +55,6 @@ def parse_page(link):
     if 'product' in link:
         parse_product_page(response)
     else:
-        # Save the content of simple pages
         with open(f"{link.replace('/', '_')}.html", "w") as page_file:
             page_file.write(soup.prettify())
 
