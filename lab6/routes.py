@@ -24,10 +24,10 @@ def create_electro_scooter():
           properties:
             name:
               type: string
-              description: Name of the Electro Scooter
+              description: name
             battery_level:
               type: number
-              description: Battery level of the Electro Scooter
+              description: battery level
     responses:
       201:
         description: Electro Scooter created successfully
@@ -61,7 +61,7 @@ def get_electro_scooter_by_id(scooter_id):
         in: path
         type: integer
         required: true
-        description: ID of the Electro Scooter
+        description: ID
     responses:
       200:
         description: Electro Scooter found
@@ -108,10 +108,10 @@ def update_electro_scooter(scooter_id):
           properties:
             name:
               type: string
-              description: New name for the Electro Scooter
+              description: name
             battery_level:
               type: number
-              description: New battery level for the Electro Scooter
+              description: battery level
     responses:
       200:
         description: Electro Scooter updated successfully
@@ -151,7 +151,7 @@ def delete_electro_scooter(scooter_id):
         in: header
         type: string
         required: true
-        description: Password for authentication
+        description: password
     responses:
       200:
         description: Electro Scooter deleted successfully
