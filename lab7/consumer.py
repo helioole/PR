@@ -56,7 +56,7 @@ def save_to_persistence(data, consumer_id):
 
 def worker(url):
     thread_id = threading.current_thread().ident
-    consumer_id = thread_id % 3 + 1
+    consumer_id = thread_id % 20 + 1
     print(f"Consumer {consumer_id} processing URL: {url}")
 
     product_details = parse_product_details(url)
@@ -94,5 +94,5 @@ def consume_worker():
         print(f"Error in consume_worker: {e}")
 
 if __name__ == "__main__":
-    num_threads = 3
+    num_threads = 20
     consume_urls(num_threads)
