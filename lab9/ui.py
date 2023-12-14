@@ -49,7 +49,7 @@ class EmailSenderUI:
         self.file_path_entry.insert(tk.END, filedialog.askopenfilename())
 
     def upload_file_and_send_email(self):
-        email_sender = EmailSender()  # Create a new EmailSender instance for each operation
+        email_sender = EmailSender()
         file_path = self.file_path_entry.get()
         recipient_email = self.recipient_entry.get()
         subject = self.subject_entry.get()

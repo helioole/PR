@@ -9,9 +9,9 @@ class EmailSender:
 
     def upload_file(self, local_file_path):
         try:
-            self.ftp.cwd('faf-212')  # Go to the parent directory
+            self.ftp.cwd('faf-212')
 
-            dirs = ['Racovcena']  # List of directories to create if they don't exist
+            dirs = ['Racovcena']
             for directory in dirs:
                 try:
                     self.ftp.cwd(directory)
@@ -29,18 +29,19 @@ class EmailSender:
             print(f"Upload failed: {str(e)}")
             return False, None
 
+   
     def send_email(self, recipient_email, subject, body, file_url):
-        try:
-            msg = MIMEText(f"{body}\n\nFile URL: {file_url}")
-            msg['Subject'] = subject
-            msg['From'] = sender
-            msg['To'] = recipient_email
+            try:
+                msg = MIMEText(f"{body}\n\nFile URL: {file_url}")
+                msg['Subject'] = subject
+                msg['From'] = sender
+                msg['To'] = recipient_email
 
-            with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp_server:
-                smtp_server.login(sender, password)
-                smtp_server.sendmail(sender, recipient_email, msg.as_string())
+                with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp_server:
+                    smtp_server.login(sender, password)
+                    smtp_server.sendmail(sender, recipient_email, msg.as_string())
 
-            return True
-        except Exception as e:
-            print(f"Email sending failed: {str(e)}")
-            return False
+                return True
+            except Exception as e:
+                print(f"Email sending failed: {str(e)}")
+                return False
